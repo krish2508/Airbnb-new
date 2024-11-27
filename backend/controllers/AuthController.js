@@ -32,23 +32,13 @@ const login = async (req, res) => {
     if (!isPassEqual) {
       return res.status(403).json({ message: errMsg, success: false });
     }
-    const jwtToken = jwt.sign({ email, password }, process.env.JWT_SECRET, {
+    const jwtToken = jwt.sign({ email, password ,name: user.name,role: user.role,}, process.env.JWT_SECRET, {
       expiresIn: "24h",
     });
     return res
       .cookie("token", jwtToken, {
         maxAge: 1 * 24 * 60 * 60 * 1000,
-        httpOnly: true, // Recommended for security
-        secure: false,
-      })
-      .cookie("role", user.role,{
-        maxAge: 1 * 24 * 60 * 60 * 1000,
-        httpOnly: true, // Recommended for security
-        secure: false,
-      })
-      .cookie("loggedinuser", user.name, {
-        maxAge: 1 * 24 * 60 * 60 * 1000,
-        httpOnly: true, // Recommended for security
+        httpOnly: true,
         secure: false,
       })
       .status(201)

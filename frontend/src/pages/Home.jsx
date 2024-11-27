@@ -4,6 +4,7 @@ import { handleError, handleSuccess,fetchCookie } from "../utils";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import './Home.css';
+import { jwtDecode } from "jwt-decode";
 
 function Home() {
   const [loggedInUser, setLoggedInUser] = useState("");
@@ -26,7 +27,6 @@ function Home() {
       const response = await fetch("http://localhost:3000/allListings"); // Update the URL if deployed
       const data = await response.json();
       setlist(data);
-      console.log(data);
       //console.log(await fetchCookie('token'));
     } catch (error) {
       console.error("Error fetching items:", error);
@@ -38,10 +38,11 @@ function Home() {
   useEffect(() => {
     const initializeData = async () => {
       try {
-        const user = await fetchCookie("loggedinuser");
-        const userRole = await fetchCookie("role");
-        setLoggedInUser(user);
-        setRole(userRole);
+        const tokenn=await fetchCookie("token");
+        const decoded=jwtDecode(tokenn);
+        console.log(decoded);
+        setLoggedInUser(decoded.name);
+        setRole(decoded.role);
         await fetchListing();
       } catch (error) {
         console.error("Error initializing data:", error);

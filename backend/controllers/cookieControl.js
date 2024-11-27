@@ -1,7 +1,5 @@
 const logout = async (req, res) => {
   res.cookie("token", "", { maxAge: 0 });
-  res.cookie("role", "", { maxAge: 0 });
-  res.cookie("loggedinuser", "", { maxAge: 0 });
   return res.json({ message: "del successfully" });
 };
 const fetchCookie = async (req, res) => {

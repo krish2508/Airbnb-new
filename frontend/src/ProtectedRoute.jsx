@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { fetchCookie } from "./utils"; // Ensure this is the correct import
-
+import { jwtDecode } from "jwt-decode";
 const ProtectedRoute = ({ element: Element, allowedRole }) => {
   const [userRole, setUserRole] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const getRole = async () => {
       try {
-        const role = await fetchCookie("role");
-        setUserRole(role);
+        const tokenn=await fetchCookie("token");
+        const decoded=jwtDecode(tokenn);
+        setUserRole(decoded.role);
+        console.log(decoded);
       } catch (error) {
         console.error("Error fetching role:", error);
       } finally {
@@ -17,11 +19,9 @@ const ProtectedRoute = ({ element: Element, allowedRole }) => {
     };
     getRole();
   }, []);
-
   if (loading) {
     return <div>Loading...</div>; // Show a loading state while fetching
   }
-
   if (userRole === allowedRole) {
     return <Element />;
   }
