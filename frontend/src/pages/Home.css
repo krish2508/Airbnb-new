@@ -1,0 +1,61 @@
+.Home {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .Home button {
+    margin: 10px 5px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .Home button:hover {
+    background-color: #0056b3;
+  }
+  
+  .Home .grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Force 4 items per row */
+    gap: 20px; /* Add spacing between items */
+  }
+  
+  .Home .grid-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 15px;
+    transition: transform 0.2s ease;
+  }
+  
+  .Home .grid-item:hover {
+    transform: scale(1.03);
+  }
+  
+  .Home img {
+    width: 100%; /* Make all images the same width */
+    height: 200px; /* Set a fixed height */
+    object-fit: cover; /* Ensure the image scales correctly without distortion */
+    border-radius: 5px;
+  }
+  
+  .Home h2 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
+  
+  .Home p {
+    color: #555;
+    margin: 5px 0;
+  }
+  
+  .Home a {
+    text-decoration: none;
+    color: inherit;
+  }
