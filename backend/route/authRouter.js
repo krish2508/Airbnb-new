@@ -5,7 +5,7 @@ const {
   signupValidation,
   loginValidation,
 } = require("../middlewares/AuthValidation");
-const { getAllListings,addList,showlisting } = require("../controllers/listings");
+const { getAllListings,addList,showlisting ,deleteListing} = require("../controllers/listings");
 router.post("/signup", signupValidation, signup);
 router.post("/login", loginValidation, login);
 router.get("/allListings", getAllListings);
@@ -13,4 +13,5 @@ router.post("/add",addList);
 router.get("/logout",logout);
 router.post("/getCookie",fetchCookie);
 router.get("/listings/:id",showlisting);
+router.delete("/listings/:id",deleteListing);
 module.exports = router;

@@ -30,4 +30,15 @@ const showlisting=async(req,res)=>{
         res.status(500).json({ message: 'Server error' ,success:false});
     }
 }
-module.exports={getAllListings,addList,showlisting};
+const deleteListing=async(req,res)=>{
+    try {
+        
+        let { id } = req.params;
+        await Listing.findByIdAndDelete(id);
+        res.json({success:true,message:"deleted successfully"});
+    } catch (error) {
+        res.status(500).json({ message: 'Deletion not success' ,success:false});
+    }
+
+}
+module.exports={getAllListings,addList,showlisting,deleteListing};
