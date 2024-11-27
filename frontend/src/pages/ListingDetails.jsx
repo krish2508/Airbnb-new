@@ -68,6 +68,9 @@ function ListingDetails() {
       handleError(error);
     }
   }
+  const handleEdit=(listing)=>{
+    navigate(`/edit/${listing._id}`,{state:{data:listing}});
+  }
   return (
     <div>
         <div>
@@ -84,7 +87,12 @@ function ListingDetails() {
       </p>
       </div>
       {role=="owner" &&
-      <button onClick={()=>{del(listing._id)}}>delete</button>}
+      <button onClick={()=>{del(listing._id)}}>delete</button>
+      }&nbsp;
+      {role=="owner" &&
+      <button onClick={()=>{handleEdit(listing)}}>edit</button>
+      
+      }
       <ToastContainer />
     </div>
   );
