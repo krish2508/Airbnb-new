@@ -18,11 +18,19 @@ const loginValidation=(req,res,next)=>{
         password:Joi.string().min(4).max(100).required(),
     });
     const {error}=schema.validate(req.body);
-    if(error){
+    if(error)
+        {
         return res.status(400).json({message:"Bad request",error});
     }
     next();
 }
+const checkOwnerRole = (req, res, next) => {
+    const { role } = req.cookies; // Assuming the role is stored in cookies
+    if (role !== "owner") {
+      return res.status(403).json({ success: false, message: "Access denied" });
+    }
+    next();
+  };
 module.exports={
-    signupValidation,loginValidation
+    signupValidation,loginValidation,checkOwnerRole
 }

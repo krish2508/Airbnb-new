@@ -47,7 +47,6 @@ function Home() {
         console.error("Error initializing data:", error);
       }
     };
-  
     initializeData();
   }, []);
   return (

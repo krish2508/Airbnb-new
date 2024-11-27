@@ -2,20 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import { handleError, handleSuccess} from '../utils';
+import { handleError, handleSuccess,fetchCookie} from '../utils';
 import { Link, useNavigate } from "react-router-dom";
 
 function ListingDetails() {
   const { id } = useParams(); // Extract the ID from the URL
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [role, setRole] = useState(""); 
   const navigate = useNavigate();
   useEffect(() => {
     const fetchListingDetails = async () => {
       try {
         const response = await fetch(`http://localhost:3000/listings/${id}`);
         const jsonResponse = await response.json();
-        console.log(jsonResponse);
         if (jsonResponse.success) {
           setListing(jsonResponse.data); // Access data inside 'data' key
         } else {
@@ -27,8 +27,17 @@ function ListingDetails() {
         setLoading(false);
       }
     };
+    const fetchUserRole = async () => {
+      try {
+        const userRole = await fetchCookie("role"); // Fetch the user's role from cookies
+        setRole(userRole);
+      } catch (error) {
+        console.error("Error fetching user role:", error);
+      }
+    };
 
     fetchListingDetails();
+    fetchUserRole();
   }, [id]);
 
   if (loading) {
@@ -38,7 +47,6 @@ function ListingDetails() {
   if (!listing) {
     return <div>Listing not found!</div>;
   }
-  
   const del=async (id)=>{
     try {
       const delUrl=`http://localhost:3000/listings/${id}`;
@@ -75,7 +83,8 @@ function ListingDetails() {
         Location: {listing.location}, {listing.country}
       </p>
       </div>
-      <button onClick={()=>{del(listing._id)}}>delete</button>
+      {role=="owner" &&
+      <button onClick={()=>{del(listing._id)}}>delete</button>}
       <ToastContainer />
     </div>
   );
