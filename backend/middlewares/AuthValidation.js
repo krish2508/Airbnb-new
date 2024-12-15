@@ -1,4 +1,5 @@
 const Joi=require('joi');
+const { jwtDecode } = require('jwt-decode');
 const signupValidation=(req,res,next)=>{
     const schema=Joi.object({
         name:Joi.string().min(3).max(100).required(),
@@ -24,8 +25,11 @@ const loginValidation=(req,res,next)=>{
     }
     next();
 }
-const checkOwnerRole = (req, res, next) => {
-    const { role } = req.cookies; // Assuming the role is stored in cookies
+const checkOwnerRole = async (req, res, next) => {
+
+    const tokenn=req.cookies.token; // Assuming the role is stored in cookies
+    const decoded=jwtDecode(tokenn);
+    const role=decoded.role;
     if (role !== "owner") {
       return res.status(403).json({ success: false, message: "Access denied" });
     }

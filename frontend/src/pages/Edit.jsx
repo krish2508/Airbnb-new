@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-
+import './Edit.css';
 const EditComponent = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -65,72 +65,81 @@ const EditComponent = () => {
 
   // Form JSX
   return (
-    <div>
-      <h1>Edit Listing</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="description">Description</label>
-          <input
-            type="text"
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="image">Image URL</label>
-          <input
-            type="text"
-            id="image"
-            name="image"
-            value={formData.image}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="price">Price</label>
-          <input
-            type="number"
-            id="price"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="location">Location</label>
-          <input
-            type="text"
-            id="location"
-            name="location"
-            value={formData.location}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="country">Country</label>
-          <input
-            type="text"
-            id="country"
-            name="country"
-            value={formData.country}
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit">Update Listing</button>
-      </form>
-    </div>
+    <div class="Edit">
+    <div class="edit-listing-container">
+    <h1 class="edit-listing-title">Edit Listing</h1>
+    <form onSubmit={handleSubmit} class="edit-listing-form">
+      <div class="form-group">
+        <label htmlFor="title" class="form-label">Title</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+          class="form-input"
+        />
+      </div>
+      <div class="form-group">
+        <label htmlFor="description" class="form-label">Description</label>
+        <input
+          type="text"
+          id="description"
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+          class="form-input"
+        />
+      </div>
+      <div class="form-group">
+        <label htmlFor="image" class="form-label">Image URL</label>
+        <input
+          type="text"
+          id="image"
+          name="image"
+          value={formData.image}
+          onChange={handleChange}
+          class="form-input"
+        />
+      </div>
+      <div class="form-group">
+        <label htmlFor="price" class="form-label">Price</label>
+        <input
+          type="number"
+          id="price"
+          name="price"
+          value={formData.price}
+          onChange={handleChange}
+          class="form-input"
+        />
+      </div>
+      <div class="form-group">
+        <label htmlFor="location" class="form-label">Location</label>
+        <input
+          type="text"
+          id="location"
+          name="location"
+          value={formData.location}
+          onChange={handleChange}
+          class="form-input"
+        />
+      </div>
+      <div class="form-group">
+        <label htmlFor="country" class="form-label">Country</label>
+        <input
+          type="text"
+          id="country"
+          name="country"
+          value={formData.country}
+          onChange={handleChange}
+          class="form-input"
+        />
+      </div>
+      <button type="submit" class="submit-btn">Update Listing</button>
+    </form>
+  </div>
+  </div>
+  
   );
 };
 export default EditComponent;

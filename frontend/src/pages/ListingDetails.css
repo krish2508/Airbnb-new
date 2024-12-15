@@ -1,0 +1,70 @@
+/* Container styling */
+.listing-details-container {
+  font-family: Arial, sans-serif;
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 800px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Individual listing styling */
+.listing-details {
+  text-align: center;
+}
+
+/* Title styling */
+.listing-title {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Image styling */
+.listing-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+}
+
+/* Text styling */
+.listing-description,
+.listing-price,
+.listing-location {
+  font-size: 16px;
+  color: #555;
+  margin: 10px 0;
+}
+
+/* Button styling */
+.delete-button,
+.edit-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #d9534f;
+}
+
+.edit-button:hover {
+  background-color: #5cb85c;
+}
+
+/* Loading and not found states */
+.loading,
+.not-found {
+  font-size: 18px;
+  text-align: center;
+  color: #777;
+}

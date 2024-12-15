@@ -5,6 +5,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import './Home.css';
 import { jwtDecode } from "jwt-decode";
+<link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"></link>
+import 'boxicons/css/boxicons.min.css';
+
 
 function Home() {
   const [loggedInUser, setLoggedInUser] = useState("");
@@ -52,9 +55,22 @@ function Home() {
   }, []);
   return (
     <div className="Home">
-  <div>Hello {loggedInUser}</div>
-  <button onClick={addItem}>add new listing</button>
-  <button onClick={handleLogout}>Logout</button>
+       <header>
+        <div class="search-bar">
+            <input type="text" placeholder="Where"></input>
+            <input type="date" placeholder="Check-in"></input>
+            <input type="date" placeholder="Check-out"></input>
+            <input type="number" placeholder="Who"></input>
+            <button className="btn">
+              <i className="bx bx-search"></i>
+           </button>
+
+            <div class="right">Hello {loggedInUser}
+              <button onClick={addItem}>add new listing</button>
+      <button onClick={handleLogout}>Logout</button>
+  </div>
+        </div>  
+  </header>
   <div className="grid-container">
     {list &&
       list?.map((item, index) => {
